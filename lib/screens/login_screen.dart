@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try {
       await Provider.of<Authentication>(context, listen: false)
-          .logIn(_authData['email'], _authData['password']);
+          .logIn(_authData['email'], _authData['password'], _authData['']);
       Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
     } catch (error) {
       var errorMessage = 'Authentication Failed. Please try again later.';

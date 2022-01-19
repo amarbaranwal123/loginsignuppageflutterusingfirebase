@@ -1,73 +1,215 @@
-//import 'dart:ffi';
+import 'package:login_app/home/homepage.dart';
 
+import 'more.dart';
+import 'myplan.dart';
+import 'recharge.dart';
+import 'support.dart';
 import 'package:flutter/material.dart';
-import 'package:login_app/screens/login_screen.dart';
-//import 'package:login_app/screens/signup_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
+  //HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  List<Widget> _widgetOptions = <Widget>[
+    MyHomePage(),
+    MyPlan(),
+    Recharge(),
+    Support(),
+    More(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Screen'),
-        actions: <Widget>[
-          FlatButton(
-            child: Row(
-              children: <Widget>[Text('LogOut'), Icon(Icons.exit_to_app)],
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(
+                  Icons.maps_home_work,
+                  color: Colors.blue.shade200,
+                  size: 20,
+                ),
+                Text(
+                  'HOME',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13),
+                ),
+              ],
             ),
-            textColor: Colors.white,
-            onPressed: () {
-              Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-            },
-          )
-        ],
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            height: 500,
-            child: Card(
-              child: ListView(
-                children: <Widget>[
-                  ListTile(
-                    leading: Icon(Icons.map),
-                    title: Text('Map'),
-                    subtitle: Text("Amar Baranwal"),
-                    trailing: Icon(Icons.wb_sunny),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.photo_album),
-                    title: Text('Album'),
-                    subtitle: Text("Amar Baranwal"),
-                    trailing: Icon(Icons.wb_sunny),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.phone),
-                    title: Text('Phone'),
-                    subtitle: Text("Amar Baranwal"),
-                    trailing: Icon(Icons.wb_sunny),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.contacts),
-                    title: Text('Contact'),
-                    subtitle: Text("Amar Baranwal"),
-                    trailing: Icon(Icons.wb_sunny),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text('Setting'),
-                    subtitle: Text("Amar Baranwal"),
-                    trailing: Icon(Icons.wb_sunny),
-                  ),
-                ],
-              ),
+            // ignore: deprecated_member_use
+            title: Text('HOME'),
+            activeIcon: Column(
+              children: [
+                Icon(
+                  Icons.maps_home_work,
+                  color: Colors.black,
+                ),
+                Text(
+                  'HOME',
+                  style: TextStyle(
+                      color: Colors.pink.shade700, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(
+                  Icons.queue_play_next_outlined,
+                  color: Colors.blue.shade200,
+                  size: 20,
+                ),
+                Text(
+                  'My Plan',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13),
+                ),
+              ],
+            ),
+            // ignore: deprecated_member_use
+            title: Text('HOME'),
+            activeIcon: Column(
+              children: [
+                Icon(
+                  Icons.queue_play_next_outlined,
+                  color: Colors.black,
+                ),
+                Text(
+                  'My Plan',
+                  style: TextStyle(
+                      color: Colors.pink.shade700, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(
+                  Icons.settings_backup_restore_rounded,
+                  color: Colors.blue.shade200,
+                  size: 20,
+                ),
+                Text(
+                  'Recharge',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13),
+                ),
+              ],
+            ),
+            // ignore: deprecated_member_use
+            title: Text('Recharge'),
+            activeIcon: Column(
+              children: [
+                Icon(
+                  Icons.settings_backup_restore_rounded,
+                  color: Colors.black,
+                ),
+                Text(
+                  'Recharge',
+                  style: TextStyle(
+                      color: Colors.pink.shade700, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(
+                  Icons.dashboard_customize_sharp,
+                  color: Colors.blue.shade200,
+                  size: 20,
+                ),
+                Text(
+                  'Support',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13),
+                ),
+              ],
+            ),
+            // ignore: deprecated_member_use
+            title: Text('Support'),
+            activeIcon: Column(
+              children: [
+                Icon(
+                  Icons.dashboard_customize_sharp,
+                  color: Colors.black,
+                ),
+                Text(
+                  'Support',
+                  style: TextStyle(
+                      color: Colors.pink.shade700, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(
+                  Icons.add_circle_outline_rounded,
+                  color: Colors.blue.shade200,
+                  size: 20,
+                ),
+                Text(
+                  'More',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13),
+                ),
+              ],
+            ),
+            // ignore: deprecated_member_use
+            title: Text('more'),
+            activeIcon: Column(
+              children: [
+                Icon(
+                  Icons.add_circle_outline_rounded,
+                  color: Colors.black,
+                ),
+                Text(
+                  'More',
+                  style: TextStyle(
+                      color: Colors.pink.shade700, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ],
+        // type: BottomNavigationBarType.shifting,
+
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
+      body: _widgetOptions.elementAt(_selectedIndex),
     );
   }
 }
